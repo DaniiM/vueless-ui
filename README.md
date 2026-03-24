@@ -2,7 +2,8 @@
 
 ## Installation
 
+```markdown
+Clone this repo and import components locally:
+
 ```bash
-npm install vueless-ui
-# or
-yarn add vueless-ui
+git clone https://github.com/DaniiM/vueless-ui
