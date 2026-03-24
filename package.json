@@ -1,0 +1,40 @@
+{
+  "name": "vueless-ui",
+  "version": "0.0.1",
+  "description": "Unstyled, accessible UI primitives for Vue 3",
+  "type": "module",
+  "main": "dist/vueless-ui.umd.js",
+  "module": "dist/vueless-ui.es.js",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/vueless-ui.es.js",
+      "require": "./dist/vueless-ui.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "vue",
+    "headless",
+    "ui",
+    "components",
+    "accessible"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.5",
+    "vite": "^8.0.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.30"
+  }
+}
