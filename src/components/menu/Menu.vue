@@ -1,17 +1,19 @@
 <script setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted, onUnmounted } from 'vue'
 import { moveIndex, getKeyAction } from '../../utils/keyboard.js'
 import { focusElement } from '../../utils/dom.js'
 
 const isOpen = ref(false)
 const items = ref([])
 const activeIndex = ref(-1)
+const menuRef = ref(null);
 
 function toggle() {
   isOpen.value = !isOpen.value
   if (isOpen.value) {
+    items.value = [] // reset value before registration
     activeIndex.value = 0
-    focusItem(activeIndex.value)
+    nextTick(() => focusItem(activeIndex.value))
   }
 }
 
@@ -21,7 +23,9 @@ function close() {
 }
 
 function registerItem(el) {
-  if (el && !items.value.includes(el)) items.value.push(el)
+  if (el && !items.value.includes(el)) {
+    items.value.push(el)
+  }
 }
 
 function focusItem(index) {
@@ -43,10 +47,27 @@ function handleKey(e) {
     if (items.value[activeIndex.value]) items.value[activeIndex.value].click()
   }
 }
+
+function handleOutsideClick(e) {
+  if (!menuRef.value || !isOpen.value) return
+
+  // if clicked outside - close menu
+  if (!menuRef.value.contains(e.target)) {
+    close()
+  }
+}
+
+onMounted(() => {
+    document.addEventListener('mousedown',handleOutsideClick)
+})
+
+onUnmounted(() => {
+    document.removeEventListener('mousedown',handleOutsideClick)
+})
 </script>
 
 <template>
-  <div class="menu-wrapper" @keydown="handleKey">
+  <div ref="menuRef" class="menu-wrapper" @keydown="handleKey" tabindex="0">
     <slot :is-open="isOpen" :toggle="toggle" :register-item="registerItem" />
   </div>
 </template>
