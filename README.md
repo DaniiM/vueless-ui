@@ -25,14 +25,16 @@ npm run dev
 
 ## Usage Example
 
-<Menu>
-  <MenuButton>Open Menu</MenuButton>
-  <MenuItems>
-    <MenuItem>Profile</MenuItem>
-    <MenuItem disabled>Settings</MenuItem>
-    <MenuItem>Logout</MenuItem>
-  </MenuItems>
-</Menu>
+<template>
+  <Menu>
+    <MenuButton>Open Menu</MenuButton>
+    <MenuItems>
+      <MenuItem>Profile</MenuItem>
+      <MenuItem disabled>Settings</MenuItem>
+      <MenuItem>Logout</MenuItem>
+    </MenuItems>
+  </Menu>
+</template>
 
 ## Component Structure
 
