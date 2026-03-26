@@ -25,6 +25,7 @@ npm run dev
 
 ## Usage Example
 
+```vue
 <template>
   <Menu>
     <MenuButton>Open Menu</MenuButton>
@@ -35,19 +36,3 @@ npm run dev
     </MenuItems>
   </Menu>
 </template>
-
-## Component Structure
-
-src/
-  components/
-    menu/
-      Menu.vue
-      MenuButton.vue
-      MenuItem.vue
-      MenuItems.vue
-      context.js
-      useMenuContext.js
-    popover/
-    tooltip/
-    dialog/
-  utils/
