@@ -1,12 +1,17 @@
 <script setup>
-defineProps({
-  toggle: Function
-})
+import { useMenuContext } from './useMenuContext'
+
+const menu = useMenuContext()
 </script>
 
 <template>
-  <button class="menu-button" @click="toggle">
-    <slot>Open Menu</slot>
+  <button
+    class="menu-button"
+    @click="menu.toggle"
+    aria-haspopup="menu"
+    :aria-expanded="menu.isOpen.value"
+  >
+    <slot />
   </button>
 </template>
 
@@ -20,6 +25,7 @@ defineProps({
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.2s;
+  user-select: none;
 }
 
 .menu-button:hover {

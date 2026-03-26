@@ -1,17 +1,18 @@
 <script setup>
-import { ref, nextTick, onMounted, onUnmounted } from 'vue'
+import { ref, nextTick, onMounted, onUnmounted, provide } from 'vue'
 import { moveIndex, getKeyAction } from '../../utils/keyboard.js'
 import { focusElement } from '../../utils/dom.js'
+import { MENU_CTX } from './context'
 
 const isOpen = ref(false)
 const items = ref([])
 const activeIndex = ref(-1)
-const menuRef = ref(null);
+const menuRef = ref(null)
 
 function toggle() {
   isOpen.value = !isOpen.value
   if (isOpen.value) {
-    items.value = [] // reset value before registration
+    items.value = []
     activeIndex.value = 0
     nextTick(() => focusItem(activeIndex.value))
   }
@@ -44,31 +45,35 @@ function handleKey(e) {
     close()
   } else if (action === 'enter') {
     e.preventDefault()
-    if (items.value[activeIndex.value]) items.value[activeIndex.value].click()
+    items.value[activeIndex.value]?.click()
   }
 }
 
 function handleOutsideClick(e) {
   if (!menuRef.value || !isOpen.value) return
-
-  // if clicked outside - close menu
-  if (!menuRef.value.contains(e.target)) {
-    close()
-  }
+  if (!menuRef.value.contains(e.target)) close()
 }
 
 onMounted(() => {
-    document.addEventListener('mousedown',handleOutsideClick)
+  document.addEventListener('mousedown', handleOutsideClick)
 })
 
 onUnmounted(() => {
-    document.removeEventListener('mousedown',handleOutsideClick)
+  document.removeEventListener('mousedown', handleOutsideClick)
+})
+
+provide(MENU_CTX, {
+  isOpen,
+  toggle,
+  close,
+  registerItem,
+  activeIndex
 })
 </script>
 
 <template>
   <div ref="menuRef" class="menu-wrapper" @keydown="handleKey" tabindex="0">
-    <slot :is-open="isOpen" :toggle="toggle" :register-item="registerItem" />
+    <slot />
   </div>
 </template>
 
@@ -76,6 +81,5 @@ onUnmounted(() => {
 .menu-wrapper {
   display: inline-block;
   position: relative;
-  font-family: Arial, sans-serif;
 }
 </style>
