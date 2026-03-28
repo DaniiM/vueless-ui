@@ -2,8 +2,6 @@
 import { useMenuContext } from './useMenuContext'
 
 const menu = useMenuContext()
-
-console.log(menu.isOpen.value)
 </script>
 
 <template>

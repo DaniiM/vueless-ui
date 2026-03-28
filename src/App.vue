@@ -1,9 +1,11 @@
 <script setup>
-import { Menu, MenuButton, MenuItems, MenuItem } from './index.js'
+import { Menu, MenuButton, MenuItems, MenuItem } from './index.js' // menu import
+import { Tooltip, TooltipTrigger, TooltipContent } from './index.js' // tooltip import
 
 </script>
 
 <template>
+  <h1>Menu</h1>
   <Menu>
     <MenuButton>Open Menu</MenuButton>
 
@@ -13,6 +15,12 @@ import { Menu, MenuButton, MenuItems, MenuItem } from './index.js'
       <MenuItem>Logout</MenuItem>
     </MenuItems>
   </Menu>
+
+  <h1>Tooltip</h1>
+  <Tooltip>
+    <TooltipTrigger>Hover me</TooltipTrigger>
+    <TooltipContent>Hello</TooltipContent>
+  </Tooltip>
 </template>
 
 <style>
@@ -20,6 +28,14 @@ body {
   font-family: Arial, sans-serif;
   padding: 2rem;
   background-color: #f9fafb;
+}
+
+.divider {
+  margin-top: 20px;
+  background-color: black;
+  height: 2px;
+  width: 100%;
+
 }
 
 .dropdown-enter-active,
