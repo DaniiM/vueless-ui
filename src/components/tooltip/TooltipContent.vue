@@ -12,6 +12,8 @@
     right: 'tooltip--right',
   };
 
+  const placementClass = placementClasses[placement] || placementClasses.top;
+
   const el = ref(null);
 
   onMounted(() => {
@@ -26,7 +28,7 @@
       ref="el"
       role="tooltip"
       :id="tooltipId"
-      :class="['tooltip', placementClasses[placement]]"
+      :class="['tooltip', placementClass]"
       @mouseenter="cancelClose"
       @mouseleave="scheduleClose"
     >
