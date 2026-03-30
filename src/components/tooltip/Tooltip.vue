@@ -16,6 +16,7 @@
     placement: {
       type: String,
       default: 'top',
+      validator: (value) => ['top', 'bottom', 'left', 'right'].includes(value),
     },
     disabled: {
       type: Boolean,
