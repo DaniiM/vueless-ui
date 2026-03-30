@@ -6,13 +6,23 @@
 
   const el = ref(null);
 
+  const props = defineProps({
+    as: {
+      type: String,
+      default: 'span',
+    },
+    asChild: Boolean,
+  });
+
   onMounted(() => {
     triggerRef.value = el.value;
   });
 </script>
 
 <template>
-  <span
+  <component
+    v-if="!props.asChild"
+    :is="props.as"
     ref="el"
     @mouseenter="scheduleOpen"
     @mouseleave="scheduleClose"
@@ -21,5 +31,14 @@
     :aria-describedby="tooltipId"
   >
     <slot />
-  </span>
+  </component>
+
+  <slot
+    v-else
+    ref="el"
+    @mouseenter="scheduleOpen"
+    @mouseleave="scheduleClose"
+    @focus="openNow"
+    @blur="closeNow"
+  />
 </template>
