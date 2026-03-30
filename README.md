@@ -15,9 +15,11 @@ npm install
 npm run dev
 
 ```
+
 ## Current Components
 
 ### Menu
+
 - Headless dropdown menu
 - Keyboard accessible
 - Slot-based API
@@ -36,3 +38,4 @@ npm run dev
     </MenuItems>
   </Menu>
 </template>
+```

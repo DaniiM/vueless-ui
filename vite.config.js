@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
   plugins: [vue()],
@@ -7,15 +7,15 @@ export default defineConfig({
     lib: {
       entry: 'src/index.js',
       name: 'VuelessUI',
-      fileName: (format) => `vueless-ui.${format}.js`
+      fileName: (format) => `vueless-ui.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],
       output: {
         globals: {
-          vue: 'Vue'
-        }
-      }
-    }
-  }
-})
+          vue: 'Vue',
+        },
+      },
+    },
+  },
+});
