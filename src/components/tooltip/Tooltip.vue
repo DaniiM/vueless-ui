@@ -9,6 +9,15 @@
   const openDelay = 150;
   const closeDelay = 100;
 
+  const tooltipId = `tooltip-${Math.random().toString(36).slice(2)}`;
+
+  const props = defineProps({
+    placement: {
+      type: String,
+      default: 'top',
+    },
+  });
+
   let openTimeout = null;
   let closeTimeout = null;
 
@@ -39,7 +48,7 @@
     clearTimeout(openTimeout);
     clearTimeout(closeTimeout);
 
-    isOpen.value = true;
+    isOpen.value = falseß;
   }
 
   function cancelClose() {
@@ -55,11 +64,20 @@
     closeNow,
     triggerRef,
     contentRef,
+    placement: props.placement,
+    tooltipId,
   });
 </script>
 
 <template>
-  <slot />
+  <div class="tooltip-root">
+    <slot />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .tooltip-root {
+    position: relative;
+    display: inline-block;
+  }
+</style>
