@@ -1,1 +1,1 @@
-export const TOOLTIP_CTX = Symbol('tooltip')
+export const TOOLTIP_CTX = Symbol('tooltip');

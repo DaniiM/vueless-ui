@@ -1,66 +1,65 @@
 <script setup>
-import { ref, provide } from 'vue'
-import { TOOLTIP_CTX } from './context'
+  import { ref, provide } from 'vue';
+  import { TOOLTIP_CTX } from './context';
 
-const isOpen = ref(false)
-const triggerRef = ref(null)
-const contentRef = ref(null)
+  const isOpen = ref(false);
+  const triggerRef = ref(null);
+  const contentRef = ref(null);
 
-const openDelay = 150
-const closeDelay = 100
+  const openDelay = 150;
+  const closeDelay = 100;
 
-let openTimeout = null
-let closeTimeout = null
+  let openTimeout = null;
+  let closeTimeout = null;
 
-function scheduleOpen() {
-    clearTimeout(closeTimeout)
-
-    openTimeout = setTimeout(() => {
-        isOpen.value = true
-    }, openDelay)
-}
-
-function scheduleClose() {
-    clearTimeout(openTimeout)
+  function scheduleOpen() {
+    clearTimeout(closeTimeout);
 
     openTimeout = setTimeout(() => {
-        isOpen.value = false
-    }, closeDelay)
-}
+      isOpen.value = true;
+    }, openDelay);
+  }
 
-function openNow() {
-    clearTimeout(openTimeout)
-    clearTimeout(closeTimeout)
+  function scheduleClose() {
+    clearTimeout(openTimeout);
 
-    isOpen.value = true
-}
+    openTimeout = setTimeout(() => {
+      isOpen.value = false;
+    }, closeDelay);
+  }
 
-function closeNow() {
-    clearTimeout(openTimeout)
-    clearTimeout(closeTimeout)
+  function openNow() {
+    clearTimeout(openTimeout);
+    clearTimeout(closeTimeout);
 
-    isOpen.value = true
-}
+    isOpen.value = true;
+  }
 
-function cancelClose() {
-    clearTimeout(closeTimeout)
-}
+  function closeNow() {
+    clearTimeout(openTimeout);
+    clearTimeout(closeTimeout);
 
-provide(TOOLTIP_CTX, {
-  isOpen,
-  scheduleOpen,
-  scheduleClose,
-  cancelClose,
-  openNow,
-  closeNow,
-  triggerRef,
-  contentRef
-})
+    isOpen.value = true;
+  }
+
+  function cancelClose() {
+    clearTimeout(closeTimeout);
+  }
+
+  provide(TOOLTIP_CTX, {
+    isOpen,
+    scheduleOpen,
+    scheduleClose,
+    cancelClose,
+    openNow,
+    closeNow,
+    triggerRef,
+    contentRef,
+  });
 </script>
 
 <template>
-    <slot/>
+  <slot />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
