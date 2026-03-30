@@ -25,6 +25,15 @@ npm run dev
 - Slot-based API
 - Supports disabled items
 
+### Tooltip
+
+- Headless tooltip component
+- Configurable placement (top, bottom, left, right)
+- Disabled support
+- Optional touch behavior for mobile
+- Animations (fade & scale)
+- as / asChild support for custom triggers
+
 ## Usage Example
 
 ```vue
@@ -37,5 +46,19 @@ npm run dev
       <MenuItem>Logout</MenuItem>
     </MenuItems>
   </Menu>
+</template>
+```
+
+```vue
+<template>
+  <Tooltip placement="top">
+    <TooltipTrigger as="button">Hover me</TooltipTrigger>
+    <TooltipContent>Hello, I am a tooltip!</TooltipContent>
+  </Tooltip>
+
+  <Tooltip placement="right">
+    <TooltipTrigger as="span">Hover me too</TooltipTrigger>
+    <TooltipContent>Right-side tooltip</TooltipContent>
+  </Tooltip>
 </template>
 ```
