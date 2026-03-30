@@ -53,7 +53,7 @@ npm run dev
 <template>
   <Tooltip placement="top">
     <TooltipTrigger as="button">Hover me</TooltipTrigger>
-    <TooltipContent>Hello, I am a tooltip!</TooltipContent>
+    <TooltipContent>Hello!</TooltipContent>
   </Tooltip>
 
   <Tooltip placement="right">
@@ -62,3 +62,9 @@ npm run dev
   </Tooltip>
 </template>
 ```
+
+## Contributing
+
+- Found a bug or have a feature idea? Open an **issue**.
+- Pull Requests (PRs) are welcome! Please follow the existing component patterns.
+- All PRs will be **reviewed** before merging.
