@@ -2,7 +2,16 @@
   import { ref, onMounted } from 'vue';
   import { useTooltipContext } from './useTooltipContext';
 
-  const { scheduleOpen, scheduleClose, triggerRef, tooltipId } = useTooltipContext();
+  const {
+    scheduleOpen,
+    scheduleClose,
+    triggerRef,
+    tooltipId,
+    openNow,
+    closeNow,
+    isTouch,
+    toggleOpen,
+  } = useTooltipContext();
 
   const el = ref(null);
 
@@ -28,6 +37,7 @@
     @mouseleave="scheduleClose"
     @focus="openNow"
     @blur="closeNow"
+    @click="isTouch && toggleOpen()"
     :aria-describedby="tooltipId"
   >
     <slot />
