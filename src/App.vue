@@ -16,7 +16,7 @@
   </Menu>
 
   <h1>Tooltip</h1>
-  <Tooltip>
+  <Tooltip placement="right">
     <TooltipTrigger>Hover me</TooltipTrigger>
     <TooltipContent>Hello</TooltipContent>
   </Tooltip>

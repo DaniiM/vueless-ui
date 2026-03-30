@@ -2,7 +2,7 @@
   import { ref, onMounted } from 'vue';
   import { useTooltipContext } from './useTooltipContext';
 
-  const { scheduleOpen, scheduleClose, triggerRef } = useTooltipContext();
+  const { scheduleOpen, scheduleClose, triggerRef, tooltipId } = useTooltipContext();
 
   const el = ref(null);
 
@@ -18,6 +18,7 @@
     @mouseleave="scheduleClose"
     @focus="openNow"
     @blur="closeNow"
+    :aria-describedby="tooltipId"
   >
     <slot />
   </span>
