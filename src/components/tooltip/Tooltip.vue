@@ -1,6 +1,7 @@
 <script setup>
-  import { ref, provide } from 'vue';
+  import { ref, provide, onBeforeUnmount, onMounted } from 'vue';
   import { TOOLTIP_CTX } from './context';
+  import { getKeyAction } from '../../utils/keyboard.js';
 
   const isOpen = ref(false);
   const triggerRef = ref(null);
@@ -16,12 +17,18 @@
       type: String,
       default: 'top',
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   let openTimeout = null;
   let closeTimeout = null;
 
   function scheduleOpen() {
+    if (props.disabled) return;
+
     clearTimeout(closeTimeout);
 
     openTimeout = setTimeout(() => {
@@ -38,6 +45,8 @@
   }
 
   function openNow() {
+    if (props.disabled) return;
+
     clearTimeout(openTimeout);
     clearTimeout(closeTimeout);
 
@@ -48,12 +57,36 @@
     clearTimeout(openTimeout);
     clearTimeout(closeTimeout);
 
-    isOpen.value = falseß;
+    isOpen.value = false;
   }
 
   function cancelClose() {
     clearTimeout(closeTimeout);
   }
+
+  function handleKey(event) {
+    const action = getKeyAction(event);
+
+    if (action === 'esc' && isOpen.value) {
+      closeNow();
+    }
+  }
+
+  onMounted(() => {
+    window.addEventListener('keydown', handleKey);
+  });
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('keydown', handleKey);
+
+    clearTimeout(openTimeout);
+    clearTimeout(closeTimeout);
+  });
+
+  onBeforeUnmount(() => {
+    clearTimeout(openTimeout);
+    clearTimeout(closeTimeout);
+  });
 
   provide(TOOLTIP_CTX, {
     isOpen,
@@ -70,7 +103,7 @@
 </script>
 
 <template>
-  <div class="tooltip-root">
+  <div class="tooltip-root" :aria-disabled="disabled">
     <slot />
   </div>
 </template>
