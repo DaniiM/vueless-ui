@@ -12,6 +12,8 @@
 
   const tooltipId = `tooltip-${Math.random().toString(36).slice(2)}`;
 
+  const isTouch = ref(false); // used for touch device detection
+
   const props = defineProps({
     placement: {
       type: String,
@@ -45,6 +47,12 @@
     }, closeDelay);
   }
 
+  // tap behavior for touch devices
+  function toggleOpen() {
+    if (!isTouch.value || props.disabled) return;
+    isOpen.value = !isOpen.value;
+  }
+
   function openNow() {
     if (props.disabled) return;
 
@@ -75,6 +83,7 @@
 
   onMounted(() => {
     window.addEventListener('keydown', handleKey);
+    isTouch.value = 'ontouchstart' in window || navigator.maxTouchPoints > 0; // touch device detection
   });
 
   onBeforeUnmount(() => {
@@ -100,6 +109,8 @@
     contentRef,
     placement: props.placement,
     tooltipId,
+    isTouch,
+    toggleOpen,
   });
 </script>
 
