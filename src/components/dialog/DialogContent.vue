@@ -18,8 +18,32 @@
     }
   }
 
+  function handleTab(event) {
+    if (event.key !== 'Tab') return;
+
+    const focusable = contentRef.value.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey) {
+      if (document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        event.preventDefault();
+        first.focus;
+      }
+    }
+  }
+
   onMounted(() => {
     window.addEventListener('keydown', handleKeydown);
+    window.addEventListener('keydown', handleTab);
     window.addEventListener('mousedown', handleClickOutside);
   });
 

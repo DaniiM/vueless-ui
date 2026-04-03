@@ -12,7 +12,9 @@
 </script>
 
 <template>
-  <component :is="$props.as" type="button" @click="close"> <slot /> </component>
+  <component :is="$props.as" type="button" @click="close">
+    <slot />
+  </component>
 </template>
 
 <style scoped></style>
