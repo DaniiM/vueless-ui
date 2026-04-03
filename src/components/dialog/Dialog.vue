@@ -16,7 +16,6 @@
 
   function close() {
     isOpen.value = false;
-    console.log('close clicked');
   }
 
   provide(DIALOG_CTX, {
