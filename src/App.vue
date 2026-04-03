@@ -1,9 +1,34 @@
 <script setup>
   import { Menu, MenuButton, MenuItems, MenuItem } from './index.js'; // menu import
   import { Tooltip, TooltipTrigger, TooltipContent } from './index.js'; // tooltip import
+  import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogOverlay,
+    DialogPortal,
+    DialogTitle,
+    DialogTrigger,
+  } from './index.js';
 </script>
 
 <template>
+  <Dialog>
+    <DialogTrigger as="button">Open Dialog</DialogTrigger>
+
+    <DialogPortal>
+      <DialogOverlay />
+
+      <DialogContent>
+        <DialogTitle>Title</DialogTitle>
+        <DialogDescription>This is dialog description</DialogDescription>
+
+        <DialogClose as="button">Close Dialog</DialogClose>
+      </DialogContent>
+    </DialogPortal>
+  </Dialog>
+  <!--
   <h1>Menu</h1>
   <Menu>
     <MenuButton>Open Menu</MenuButton>
@@ -25,7 +50,7 @@
   <Tooltip placement="bottom" disabled>
     <TooltipTrigger>Hover me</TooltipTrigger>
     <TooltipContent>Hello</TooltipContent>
-  </Tooltip>
+  </Tooltip>-->
 </template>
 
 <style>
@@ -33,13 +58,6 @@
     font-family: Arial, sans-serif;
     padding: 2rem;
     background-color: #f9fafb;
-  }
-
-  .divider {
-    margin-top: 20px;
-    background-color: black;
-    height: 2px;
-    width: 100%;
   }
 
   .dropdown-enter-active,
