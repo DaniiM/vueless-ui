@@ -6,6 +6,10 @@
       type: String,
       default: 'button',
     },
+    asChild: {
+      type: Boolean,
+      default: false,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -23,6 +27,7 @@
 
 <template>
   <component
+    v-if="!props.asChild"
     :is="props.as"
     type="button"
     @click="handleClick"
@@ -31,6 +36,7 @@
   >
     <slot />
   </component>
+  <slot v-else :onClick="handleClick" :disabled="props.disabled" class="dialog-button" />
 </template>
 
 <style scoped>

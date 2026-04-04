@@ -20,7 +20,10 @@
       type: String,
       default: 'span',
     },
-    asChild: Boolean,
+    asChild: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   onMounted(() => {

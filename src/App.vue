@@ -15,7 +15,11 @@
 
 <template>
   <Dialog>
-    <DialogTrigger as="button">Open Dialog</DialogTrigger>
+    <DialogTrigger as-child v-slot="{ onClick, disabled }">
+      <a href="#" @click.prevent="onClick" :aria-disabled="disabled" class="dialog-button">
+        Open dialog
+      </a>
+    </DialogTrigger>
 
     <DialogPortal>
       <DialogOverlay />
