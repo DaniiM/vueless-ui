@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, provide } from 'vue';
+  import { ref, provide, watch } from 'vue';
   import { DIALOG_CTX } from './context';
 
   const isOpen = ref(false);
@@ -17,6 +17,14 @@
   function close() {
     isOpen.value = false;
   }
+
+  watch(isOpen, (open) => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
 
   provide(DIALOG_CTX, {
     isOpen,
