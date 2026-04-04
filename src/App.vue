@@ -28,6 +28,21 @@
       </DialogContent>
     </DialogPortal>
   </Dialog>
+
+  <Dialog>
+    <DialogTrigger as="button" disabled>Disabled</DialogTrigger>
+
+    <DialogPortal>
+      <DialogOverlay />
+
+      <DialogContent>
+        <DialogTitle>Title</DialogTitle>
+        <DialogDescription>This is dialog description</DialogDescription>
+
+        <DialogClose as="button">Close Dialog</DialogClose>
+      </DialogContent>
+    </DialogPortal>
+  </Dialog>
   <!--
   <h1>Menu</h1>
   <Menu>
