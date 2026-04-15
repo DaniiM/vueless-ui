@@ -5,7 +5,7 @@
   import { MENU_CTX } from './context';
 
   const isOpen = ref(false);
-  const items = ref([]);
+  const items = ref(null);
   const activeIndex = ref(-1);
   const menuRef = ref(null);
 

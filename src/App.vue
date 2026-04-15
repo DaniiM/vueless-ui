@@ -11,10 +11,16 @@
     DialogTitle,
     DialogTrigger,
   } from './index.js';
+  import { Popover, PopoverContent, PopoverTrigger } from './index.js'; // popover import
 </script>
 
 <template>
-  <Dialog>
+  <Popover placement="top">
+    <PopoverTrigger>Click me</PopoverTrigger>
+
+    <PopoverContent> Some content </PopoverContent>
+  </Popover>
+  <!--<Dialog>
     <DialogTrigger as-child v-slot="{ onClick, disabled }">
       <a href="#" @click.prevent="onClick" :aria-disabled="disabled" class="dialog-button">
         Open dialog
@@ -46,7 +52,7 @@
         <DialogClose as="button">Close Dialog</DialogClose>
       </DialogContent>
     </DialogPortal>
-  </Dialog>
+  </Dialog>-->
 
   <!--
   <h1>Menu</h1>

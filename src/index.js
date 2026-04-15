@@ -9,7 +9,7 @@ export { default as Tooltip } from './components/tooltip/Tooltip.vue';
 export { default as TooltipTrigger } from './components/tooltip/TooltipTrigger.vue';
 export { default as TooltipContent } from './components/tooltip/TooltipContent.vue';
 
-//Dialog
+// Dialog
 export { default as Dialog } from './components/dialog/Dialog.vue';
 export { default as DialogClose } from './components/dialog/DialogClose.vue';
 export { default as DialogContent } from './components/dialog/DialogContent.vue';
@@ -18,3 +18,8 @@ export { default as DialogOverlay } from './components/dialog/DialogOverlay.vue'
 export { default as DialogPortal } from './components/dialog/DialogPortal.vue';
 export { default as DialogTitle } from './components/dialog/DialogTitle.vue';
 export { default as DialogTrigger } from './components/dialog/DialogTrigger.vue';
+
+// Popover
+export { default as Popover } from './components/popover/Popover.vue';
+export { default as PopoverTrigger } from './components/popover/PopoverTrigger.vue';
+export { default as PopoverContent } from './components/popover/PopoverContent.vue';
